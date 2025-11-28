@@ -8,7 +8,6 @@ import {
   OnDestroy,
   OnInit,
   Output,
-  effect,
   inject,
 } from '@angular/core';
 import { ApiService } from './core/api';
@@ -27,6 +26,7 @@ import { ToolFactory } from './core/tools/tool-factory.service';
 import { ToolType, WhiteboardConfig, WhiteboardElement } from './core/types';
 import { WhiteboardEvent } from './core/types/events';
 import { PanService, WheelHandlerService, ZoomService } from './core/viewport';
+import { Subscription } from 'rxjs';
 
 /**
  * Main whiteboard component providing a canvas with drawing tools and configuration options.
@@ -259,22 +259,23 @@ export class NgWhiteboardComponent implements OnInit, OnDestroy {
   });
 */
 
-  private eventsSubscription: Subscription;
+  private eventsSubscription: Subscription | null = null;
   
   ngOnInit(): void {
     this.instanceService.register(this.boardId, this.apiService);
-            this.eventsSubscription = this.eventBusService.listen().subscribe((event) => {
-            const emitter = this.eventsMap[event.type];
-            if (emitter) {
-                if (event.payload !== undefined) {
-                    emitter.emit(event.payload);
-                } else {
-                    emitter.emit();
-                }
-                // 确保变更检测能捕获到 output 的变化
-                this.cd.markForCheck();
-            }
-        });
+    this.eventsSubscription = this.eventBusService.listen().subscribe((event) => {
+      const emitter = this.eventsMap[event.type];
+      if (emitter) {
+        if (event.payload != null) { 
+            (emitter as any).emit(event.payload);
+        }
+        else if (event.payload === undefined) {
+            emitter.emit(); 
+        }
+        // 确保变更检测能捕获到 output 的变化
+        this.cd.markForCheck();
+      }
+    });
   }
 
   ngOnDestroy(): void {
