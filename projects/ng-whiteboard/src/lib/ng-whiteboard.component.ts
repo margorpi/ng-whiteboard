@@ -258,6 +258,7 @@ export class NgWhiteboardComponent implements OnInit, OnDestroy {
     this.cd.markForCheck();
   });
 */
+
   private eventsSubscription: Subscription;
   
   ngOnInit(): void {

@@ -95,6 +95,7 @@ export class SvgService {
     if(target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable)){
       return;
     }
+    
     if (event.code === 'Space' && !this.isSpaceHeld) {
       this.isSpaceHeld = true;
       this.toolsService.pushTemporaryTool(ToolType.Hand, 'pan-space');
