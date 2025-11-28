@@ -243,7 +243,7 @@ export class NgWhiteboardComponent implements OnInit, OnDestroy {
     [WhiteboardEvent.ConfigChange]: this.configChange,
     [WhiteboardEvent.ZoomChange]: this.zoomChange,
   };
-
+/*
   private readonly forwardEventsEffect = effect(() => {
     const whiteboardEvent = this.eventBusService.getAllEventsSignal();
     const last = whiteboardEvent();
@@ -257,13 +257,30 @@ export class NgWhiteboardComponent implements OnInit, OnDestroy {
     }
     this.cd.markForCheck();
   });
-
+*/
+  private eventsSubscription: Subscription;
+  
   ngOnInit(): void {
     this.instanceService.register(this.boardId, this.apiService);
+            this.eventsSubscription = this.eventBusService.listen().subscribe((event) => {
+            const emitter = this.eventsMap[event.type];
+            if (emitter) {
+                if (event.payload !== undefined) {
+                    emitter.emit(event.payload);
+                } else {
+                    emitter.emit();
+                }
+                // 确保变更检测能捕获到 output 的变化
+                this.cd.markForCheck();
+            }
+        });
   }
 
   ngOnDestroy(): void {
     this.instanceService.unregister(this.boardId);
     this.eventBusService.emit(WhiteboardEvent.Destroyed);
+    if (this.eventsSubscription) {
+      this.eventsSubscription.unsubscribe();
+    }
   }
 }
