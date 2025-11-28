@@ -1,0 +1,57 @@
+import { Tool, ToolType, ToolConfig } from '../types';
+import { CursorType } from '../types/cursors';
+import { ApiService } from '../api';
+import * as i0 from "@angular/core";
+interface TemporaryToolOverride {
+    tool: ToolType;
+    reason: string;
+    timestamp: number;
+}
+export declare class ToolsService {
+    private readonly eventBusService;
+    private readonly toolFactory;
+    private readonly _apiServiceCache;
+    private readonly _selectedTool;
+    private readonly _toolConfigs;
+    private readonly _currentToolInstance;
+    private readonly _cursor;
+    private readonly _temporaryOverrides;
+    private readonly toolInstanceCache;
+    readonly selectedTool: import("@angular/core").Signal<ToolType>;
+    readonly currentTool: import("@angular/core").Signal<Tool | null>;
+    readonly cursor: import("@angular/core").Signal<CursorType>;
+    readonly temporaryOverrides: import("@angular/core").Signal<readonly TemporaryToolOverride[]>;
+    readonly effectiveTool: import("@angular/core").Signal<ToolType>;
+    readonly availableTools: import("@angular/core").Signal<readonly ToolConfig[]>;
+    constructor();
+    private initializeDefaultTools;
+    private updateCurrentToolInstance;
+    private updateCursorForActiveTool;
+    getActiveToolType(): ToolType;
+    getActiveToolInstance(): Tool;
+    setActiveTool(tool: ToolType): void;
+    isToolActive(tool: ToolType): boolean;
+    getToolInstance(toolType: ToolType): Tool;
+    getRegisteredToolTypes(): ToolType[];
+    isToolRegistered(toolType: ToolType): boolean;
+    resetToDefaultTool(): void;
+    registerTool(config: ToolConfig): void;
+    registerTools(configs: ToolConfig[]): void;
+    unregisterTool(toolId: string): boolean;
+    getToolConfig(toolId: string): ToolConfig | undefined;
+    getToolConfigs(): readonly ToolConfig[];
+    setToolEnabled(toolId: string, enabled: boolean): boolean;
+    setToolEnabledByType(toolType: ToolType, enabled: boolean): boolean;
+    setEnabledTools(toolTypes: ToolType[]): void;
+    pushTemporaryTool(tool: ToolType, reason?: string): void;
+    popTemporaryTool(reason?: string): void;
+    clearTemporaryTools(): void;
+    hasTemporaryOverride(): boolean;
+    setCursor(cursor: CursorType): void;
+    resetCursor(): void;
+    destroy(): void;
+    setApiService(apiService: ApiService): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ToolsService, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<ToolsService>;
+}
+export {};

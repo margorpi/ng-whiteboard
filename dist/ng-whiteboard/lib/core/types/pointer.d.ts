@@ -1,0 +1,30 @@
+export interface PointerInfo {
+    x: number;
+    y: number;
+    clientX: number;
+    clientY: number;
+    pageX: number;
+    pageY: number;
+    movementX: number;
+    movementY: number;
+    pressure: number;
+    tangentialPressure: number;
+    tiltX: number;
+    tiltY: number;
+    twist: number;
+    width: number;
+    height: number;
+    pointerType: string;
+    pointerId: number;
+    isPrimary: boolean;
+    button: -1 | 0 | 1 | 2 | 3 | 4;
+    buttons: number;
+    shiftKey: boolean;
+    ctrlKey: boolean;
+    altKey: boolean;
+    metaKey: boolean;
+    eventType: string;
+    isDoubleClick?: boolean;
+    timeStamp: number;
+    target: EventTarget | null;
+}

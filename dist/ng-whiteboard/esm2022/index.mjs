@@ -1,0 +1,11 @@
+/*
+ * Public API Surface of ng-whiteboard
+ */
+// Main component and service
+export * from './lib/ng-whiteboard.service';
+export * from './lib/ng-whiteboard.component';
+// Core types and configurations
+export * from './lib/core/types';
+export * from './lib/core/config';
+export * from './lib/core/api';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi9wcm9qZWN0cy9uZy13aGl0ZWJvYXJkL3NyYy9pbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7R0FFRztBQUVILDZCQUE2QjtBQUM3QixjQUFjLDZCQUE2QixDQUFDO0FBQzVDLGNBQWMsK0JBQStCLENBQUM7QUFFOUMsZ0NBQWdDO0FBQ2hDLGNBQWMsa0JBQWtCLENBQUM7QUFDakMsY0FBYyxtQkFBbUIsQ0FBQztBQUVsQyxjQUFjLGdCQUFnQixDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiLypcclxuICogUHVibGljIEFQSSBTdXJmYWNlIG9mIG5nLXdoaXRlYm9hcmRcclxuICovXHJcblxyXG4vLyBNYWluIGNvbXBvbmVudCBhbmQgc2VydmljZVxyXG5leHBvcnQgKiBmcm9tICcuL2xpYi9uZy13aGl0ZWJvYXJkLnNlcnZpY2UnO1xyXG5leHBvcnQgKiBmcm9tICcuL2xpYi9uZy13aGl0ZWJvYXJkLmNvbXBvbmVudCc7XHJcblxyXG4vLyBDb3JlIHR5cGVzIGFuZCBjb25maWd1cmF0aW9uc1xyXG5leHBvcnQgKiBmcm9tICcuL2xpYi9jb3JlL3R5cGVzJztcclxuZXhwb3J0ICogZnJvbSAnLi9saWIvY29yZS9jb25maWcnO1xyXG5cclxuZXhwb3J0ICogZnJvbSAnLi9saWIvY29yZS9hcGknO1xyXG4iXX0=
